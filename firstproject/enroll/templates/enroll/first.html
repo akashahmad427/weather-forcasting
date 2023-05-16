@@ -1,0 +1,66 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            color: black;
+        }
+
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 10%;
+            font-size: xx-large;
+            color: black;
+            position: relative;
+            z-index: 1;
+        }
+        .sty{
+            font-style: inherit;
+            font-size: xx-large;
+            color: rgb(3, 3, 250);
+        }
+        .tsty{
+            font-style: inherit;
+            font-size: xx-large;
+            color: rgb(250, 143, 3);
+        }
+    </style>
+</head>
+<body>
+    <video id="video-background" autoplay loop muted>
+        <source src="{% static 'videos/cloud.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="content">
+        <form action="" method="post">
+            <div class=" mb-2 my-3 tsty"><h1>WELLCOME  To  Weather  Forcasting</h1></div><hr><br>
+            <div class=" mb-2 my-3 sty"><h1>Enter a specific name of city to find out weather conditiion</h1></div><hr><br></br>
+            {% csrf_token %}
+            {{ weather.as_p }}
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
